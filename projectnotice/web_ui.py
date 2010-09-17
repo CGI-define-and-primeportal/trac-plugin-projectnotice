@@ -37,6 +37,8 @@ class ProjectNotice(Component):
             if text:
                 cursor.execute("INSERT INTO system (name, value) VALUES ('notice', '%s')" % text)
 
+        return text
+
     # IAdminPageProvider methods
     def get_admin_panels(self, req):
         if req.perm.has_permission('TRAC_ADMIN'):
@@ -46,8 +48,11 @@ class ProjectNotice(Component):
         data = {}
 
         if req.method == 'POST':
-            self.set_notice(req.args.get('notice', ''))
-            #add_notice(req, _("Saved changes"))
+            if self.set_notice(req.args.get('notice', '')):
+                add_notice(req, _("Added project notice"))
+            else:
+                add_notice(req, _("Removed project notice"))
+
             req.redirect(req.href.admin(cat, page))
 
         data['notice'] = self.get_notice()
