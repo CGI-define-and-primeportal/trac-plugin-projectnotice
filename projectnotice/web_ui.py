@@ -51,6 +51,8 @@ class ProjectNotice(Component):
             req.redirect(req.href.admin(cat, page))
 
         data['notice'] = self.get_notice()
+
+        add_stylesheet(req, 'projectnotice/css/project_notice.css')
         return 'project_notice_admin.html', data
 
     # ITemplateStreamFilter methods
