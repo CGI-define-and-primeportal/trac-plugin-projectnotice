@@ -23,7 +23,8 @@ setup(name='ProjectNoticePlugin',
       zip_safe=True,
       entry_points={'trac.plugins': [
             'projectnotice.api = projectnotice.api',
-            'projectnotice.web_ui = projectnotice.web_ui'
+            'projectnotice.web_ui = projectnotice.web_ui',
+            'projectnotice.commands = projectnotice.commands'
             ]},
       classifiers=[
           'Development Status :: 4 - Beta',
