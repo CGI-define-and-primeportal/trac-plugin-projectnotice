@@ -4,7 +4,7 @@ from tracrpc.api import IXMLRPCHandler
 from projectnotice.web_ui import ProjectNotice
 
 class Commands(Component):
-    implements(IXMLRPCHandler, IPermissionRequestor)
+    implements(IXMLRPCHandler)
 
     def get_notice(self, req):
         """Get the current notice or empty string"""
@@ -23,7 +23,3 @@ class Commands(Component):
     def xmlrpc_methods(self):
         yield ('PROJECT_ADMIN', ((str,),), self.get_notice)
         yield ('PROJECT_ADMIN', ((str, str),), self.set_notice)
-
-    # IPermissionRequestor methods
-    def get_permission_actions(self):
-        yield 'PROJECT_ADMIN'
