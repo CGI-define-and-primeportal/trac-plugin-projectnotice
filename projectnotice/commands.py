@@ -21,5 +21,5 @@ class Commands(Component):
         return 'notice'
 
     def xmlrpc_methods(self):
-        yield ('PROJECT_ADMIN', ((str,),), self.get_notice)
+        yield ('PROJECT_VIEW', ((str,),), self.get_notice)
         yield ('PROJECT_ADMIN', ((str, str),), self.set_notice)
