@@ -1,8 +1,8 @@
 from trac.core import *
-from trac.config import *
+from trac.config import Option
 from trac.admin.api import IAdminPanelProvider
 from trac.web import ITemplateStreamFilter
-from trac.web.chrome import add_stylesheet, add_script, add_notice, add_warning, ITemplateProvider
+from trac.web.chrome import add_stylesheet, add_notice, ITemplateProvider
 from trac.util.translation import _
 from genshi.filters.transform import Transformer
 from genshi.builder import tag
@@ -11,7 +11,8 @@ class ProjectNotice(Component):
 
     """Plugin to allow the posting of notices on projects,
     disable access to a project (for maintenance, etc.)"""
-
+    insert_after = Option('projectnotice', 'insert_after', '//div[@id="mainnav"]',
+                          doc="Genshi path expression to after which element the project notice should be inserted")
     implements(IAdminPanelProvider, ITemplateStreamFilter, ITemplateProvider)
 
     def get_notice(self):
@@ -65,7 +66,7 @@ class ProjectNotice(Component):
         notice = self.get_notice()
 
         if notice:
-            stream |= Transformer("//div[@id='mainnav']").after(tag.h1("Notice: " + notice, id="project-notice"))
+            stream |= Transformer(self.insert_after).after(tag.h1("Notice: " + notice, id="project-notice"))
 
         return stream
 
