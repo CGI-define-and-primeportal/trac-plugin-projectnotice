@@ -36,7 +36,7 @@ class ProjectNotice(Component):
             cursor = db.cursor()
             cursor.execute("DELETE FROM system WHERE name='notice'")
             if text:
-                cursor.execute("INSERT INTO system (name, value) VALUES ('notice', '%s')" % text)
+                cursor.execute("""INSERT INTO system (name, value) VALUES ('notice', %s)""", (text,))
 
         return text
 
