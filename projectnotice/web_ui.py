@@ -58,7 +58,6 @@ class ProjectNotice(Component):
 
         data['notice'] = self.get_notice()
 
-        add_stylesheet(req, 'projectnotice/css/project_notice.css')
         return 'project_notice_admin.html', data
 
     # ITemplateStreamFilter methods
@@ -66,7 +65,7 @@ class ProjectNotice(Component):
         notice = self.get_notice()
 
         if notice:
-            stream |= Transformer(self.insert_after).after(tag.h1(tag.span(_("Notice: ")), notice, id="project-notice"))
+            stream |= Transformer(self.insert_after).after(tag.div(tag.div(tag.span(_("Notice: ")), notice), id="project-notice"))
 
         return stream
 
