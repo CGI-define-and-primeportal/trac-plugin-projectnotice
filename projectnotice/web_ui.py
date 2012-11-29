@@ -65,7 +65,7 @@ class ProjectNotice(Component):
         notice = self.get_notice()
 
         if notice:
-            stream |= Transformer(self.insert_after).after(tag.div(tag.div(tag.span(_("Notice: ")), notice), id="project-notice"))
+            stream |= Transformer(self.insert_after).after(tag.div(notice, id="project-notice"))
 
         return stream
 
