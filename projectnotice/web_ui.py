@@ -18,8 +18,8 @@ class ProjectNotice(Component):
     def get_notice(self):
         """Retrieve the notice from the DB or None if not set"""
         text = None
-
-        cursor = self.env.get_read_db().cursor()
+        db = self.env.get_read_db()
+        cursor = db.cursor()
         cursor.execute("SELECT value FROM system WHERE name='notice'")
         result = cursor.fetchone()
         if result:
