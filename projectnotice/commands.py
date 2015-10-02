@@ -1,4 +1,5 @@
-from trac.core import Component, implements
+from trac.core import Component, implements, TracError
+from trac.perm import IPermissionRequestor
 from tracrpc.api import IXMLRPCHandler
 from projectnotice.web_ui import ProjectNotice
 

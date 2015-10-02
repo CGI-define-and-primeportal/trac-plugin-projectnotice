@@ -2,7 +2,7 @@ from trac.core import *
 from trac.config import Option
 from trac.admin.api import IAdminPanelProvider
 from trac.web import ITemplateStreamFilter
-from trac.web.chrome import add_notice, ITemplateProvider
+from trac.web.chrome import add_stylesheet, add_notice, ITemplateProvider
 from trac.util.translation import _
 from genshi.filters.transform import Transformer
 from genshi.builder import tag
